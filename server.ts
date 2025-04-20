@@ -1,4 +1,9 @@
-import { Hono } from "jsr:@hono/hono";
+import { Hono } from "@hono/hono";
+import { setupRoutes } from "./routes/setup.routes.ts";
+import { movieRoutes } from "./routes/movie.routes.ts";
 const app = new Hono();
-app.get("/", (c) => c.text("Hello, World!"));
+
+setupRoutes(app);
+movieRoutes(app);
+
 Deno.serve(app.fetch);
